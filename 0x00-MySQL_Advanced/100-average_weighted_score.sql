@@ -1,3 +1,5 @@
+-- An script that createe stored procedure
+-- that computes and store the average weighted score
 DELIMITER //
 
 CREATE PROCEDURE ComputeAverageWeightedScoreForUser(
