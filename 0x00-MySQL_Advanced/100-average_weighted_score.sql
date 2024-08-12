@@ -1,5 +1,6 @@
 -- An script that createe stored procedure
 -- that computes and store the average weighted score
+DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUser;
 DELIMITER //
 
 CREATE PROCEDURE ComputeAverageWeightedScoreForUser(
