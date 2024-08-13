@@ -1,2 +1,2 @@
 // a script that updates a document collection
-db.school.update({name: "Holberton school"}, {$set : {address : 972}})
+db.school.update({name: "Holberton school"}, {$set : {address : 972}}, {multi: true})
