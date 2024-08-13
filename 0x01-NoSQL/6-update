@@ -1,0 +1,2 @@
+// a script that updates a document collection
+db.school.update({"name": "Holberton school"}, {"address" : 972})
