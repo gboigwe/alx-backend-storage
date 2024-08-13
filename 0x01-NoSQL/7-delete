@@ -1,0 +1,2 @@
+// a script that deletes all documents from collection
+db.school.drop({name : "Holberton school"})
