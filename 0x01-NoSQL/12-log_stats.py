@@ -13,10 +13,10 @@ if __name__ == "__main__":
     collection = db.nginx
 
     total_logs = collection.count_documents({})
-    print(f"{total_logs} logs")
+    print(f'{total_logs} logs')
 
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
-    print("Methods")
+    print("Methods:")
     for method in methods:
         count = collection.count_documents({"method": method})
         print(f"\tmethod {method}: {count}")
