@@ -35,7 +35,3 @@ def log_stats():
 
     for ip in top_ips:
         print(f"\t{ip['_id']}: {ip['count']}")
-
-
-if __name__ == "__main__":
-    log_stats()
