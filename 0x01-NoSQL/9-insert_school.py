@@ -7,4 +7,4 @@ def insert_school(mongo_collection, **kwargs):
     """ Function for insertion in a MongoDB collection
     based on kwargs"""
 
-    return = mongo_collection.insert(kwargs)
+    return mongo_collection.insert(kwargs)
