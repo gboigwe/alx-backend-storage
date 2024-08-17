@@ -1,24 +1,23 @@
 #!/usr/bin/env python3
-"""Module for managing a time-limited web cache
-and access tracker"""
+""" Module for Implementing an expiring
+web cache and tracker """
+
 
 from functools import wraps
 import redis
 import requests
 from typing import Callable
 
+
 client = redis.Redis()
 
 
 def count_requests(method: Callable) -> Callable:
-    """Decorator to track the number of times
-    a URL is accessed
-    """
+    """ Decortator to count how many request has been made"""
 
     @wraps(method)
     def wrapper(url):
-        """Inner function to handle caching and
-        counting"""
+        """ Function wrapper """
         client.incr(f"count:{url}")
         cached_html = client.get(f"cached:{url}")
         if cached_html:
@@ -33,7 +32,7 @@ def count_requests(method: Callable) -> Callable:
 
 @count_requests
 def get_page(url: str) -> str:
-    """Retrieves the HTML content of a specified
-    web page"""
+    """Gets the html content of a web page
+    """
     req = requests.get(url)
     return req.text
