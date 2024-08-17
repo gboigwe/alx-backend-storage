@@ -5,15 +5,19 @@ from functools import wraps
 from typing import Callable, Union
 import redis
 
+
 def count_calls(method: Callable) -> Callable:
     """Decorator to track the number of times a method is invoked"""
     key = method.__qualname__
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        """Wrapper function to increment the call count and execute the method"""
+        """Wrapper function to increment
+        the call count and execute the method
+        """
         self._redis.incr(key)
         return method(self, *args, **kwargs)
     return wrapper
+
 
 def call_history(method: Callable) -> Callable:
     """Decorator to log input parameters and return values of a function"""
@@ -27,6 +31,7 @@ def call_history(method: Callable) -> Callable:
         self._redis.rpush(output_key, str(output))
         return output
     return wrapper
+
 
 def replay(fn: Callable):
     """Function to display the call history of a specific function"""
@@ -51,6 +56,7 @@ def replay(fn: Callable):
             o = ""
         print(f'{f_name}(*{i}) -> {o}')
 
+
 class Cache():
     """Class for managing a Redis-based caching system"""
     def __init__(self) -> None:
@@ -72,7 +78,9 @@ class Cache():
 
     def get(self, key: str, fn: Callable = None)\
             -> Union[str, bytes, int, float]:
-        """Retrieve data from the cache and optionally apply a conversion function"""
+        """Retrieve data from the cache and
+        optionally apply a conversion function
+        """
         data = self._redis.get(key)
         if fn:
             return fn(data)
